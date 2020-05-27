@@ -1,0 +1,202 @@
+---
+title: ""
+bibliography: 
+  - references.bib
+  - references2.bib
+csl: ama.csl
+output:
+  bookdown::word_document2:
+      toc: false
+      toc_depth: 3
+      reference_docx: word-styles-reference-01.docx
+---
+
+``` {r, echo = FALSE, warning=FALSE, message=FALSE }
+library(dplyr)
+library(kableExtra)
+library(rio)
+
+knitr::opts_chunk$set(echo=FALSE)
+
+```
+
+# Front Matter
+__Title: __  
+All I want for Christmas is data: observational analysis of the availability statements statements accompanying medRxiv preprints
+
+&nbsp;
+
+__Authors and Affiliations__
+
+Luke A McGuinness^1,2^ (ORCID: 0000-0001-8730-9761), 
+
+(1) MRC Integrative Epidemiology Unit at the University of Bristol, Bristol, UK
+(2) Population Health Sciences, Bristol Medical School, University of Bristol, Bristol, UK
+
+&nbsp;
+
+__Corresponding author:__  
+
+Luke McGuinness; Bristol Medical School, University of Bristol,
+Canynge Hall, 39 Whatley Road, Bristol, BS8 2PS, United Kingdom; luke.mcguinness@bristol.ac.uk
+
+&nbsp;
+
+
+&nbsp;
+
+__Funding__
+
+
+LAM is supported by an NIHR Doctoral Research Fellowship (DRF-2018-11-ST2-048). The views expressed in this article are those of the authors and do not necessarily represent those of the NHS, the NIHR, MRC, or the Department of Health and Social Care.
+
+&nbsp;
+
+__Keywords__
+
+Preprints; Observational study; 
+
+#####
+
+# Abstract
+
+__Objective__ 
+
+__Design__ Observational study of the data availability statements of preprints posted on the medRxiv repository between 25th June 2019 and 1st May 2020.
+
+__Setting__ 
+
+__Results__
+
+__Conclusion__ 
+
+
+#####
+
+
+
+
+# Introduction {#intro}
+
+## Background
+
+Why focus on medRxiv - key influencer of the debate around coronavirus
+
+## Important considerations
+
+#####
+
+# Methods
+
+## Data extraction
+
+On 22nd May 2020, the data availability statements of preprints posted on the medRxiv preprint repository between 25th June 2019 (the date of first publication ofan preprint on medRxiv) and 1st May 2020 were extracted using the _medrxivr_ and _rvest_ R packages. 
+
+The script used to extract the data availabilty statements, in addition to the data used for this analysis can be found here: https://github.com/mcguinlu/data-availability-impact
+
+## Manual coding
+
+The data availability statements for each record was assessed by two independent researchers. 
+
+Researchers were only provided with the data availability statements, and were blinded to the associated preprint metadata (title, authors, corresponding author insitution) in case this could affect their assessments. Any disagreements in the coding of the DAS were resolved through discussion with a third researchers.
+
+Due to our large sample, we took authors at their word. For example, if an author team claimed that all data used in the manscript was available in the manuscript oras a supplemental file, or that their article did not use any data. However, claims to make it publically at some point in the future (except through a formal embargo process, e.g. OSF) were counted as not available. Similarly as we sought to blind assessors to the study design - this feeds into our theory that data availability statements should be self contained - if no data is shared, they should justify how their design produced no data. 
+
+This is particularly true for preprints hosted in medRxiv - leans against commentary pieces.
+
+
+While in a lot of publishing venues, the availability of data and the code used to analyze it are conflated into a single section, we focused specifically on the aviailability of data. This is largely because the guidance provided by medRxiv for the "Data availability statement" refers only to data:
+
+* "You must include a statement regarding the availability of all data referred to in the manuscript."
+
+A summary of the labels used to classify the statements and examples of each are show in Table \@ref(tab:categorylabels).
+
+#####
+
+
+
+``` {r categorylabels}
+
+tab <- rio::import("table-data/categories.xlsx") %>%
+    replace(is.na(.), "")
+
+knitr::kable(tab, caption = "Categories used to classify the data availability statements", format = "pandoc")
+```
+
+#####
+
+How to code exceptional items??
+
+* __Items that can't be shared due to ethical reasons.__ "Because our data is personally identifiable, it will be available to other researchers only if they present an ethically-approved research project with an analysis plan."
+
+* __Items where the data is claimed to be available and __ All data, code, and output for our models, maps, and sensitivity analyses is available on
+Github." [In the manuscript text, "available on GitHub" is hyperlinked.]
+
+* __Items that almost meet the criteria for a category__"Most of the data analyzed in this manuscript are provided either within the manuscript itself, or in the manuscript posted by Sasani et al. on bioRxiv at  https://www.biorxiv.org/content/10.1101/552117v2 and its accompanying links; additional data may be accessed by contacting the corresponding author (Dr. Cawthon)."
+
+
+## Analysis
+
+This is an exploratory analysis of the distribution of preprint availabil
+
+
+
+## Results {#results}
+4101 preprints were extracted from the medRxiv preprint repository on the 22nd May 2020, covering the period between 25th June 2019 and 1st May 2020.
+
+Of these records, XXX had been subsequently published
+
+
+Provide examples for each category
+
+# Discussion
+
+The sharing of data in the health sciences is substantially more challenging that 
+
+A range of potential solt
+
+
+## Limitations
+
+We believe there are three major criticism of our work that we wish to forestall. 
+
+The primary one is that manuscripts might have included links to the data/code within the text. Our response to this important limitation is that if this is the case, data availability statements are redundant. Whats the point of having something no one uses? Further, while the full-text of a manuscript is often locked behind a paywall, the data availabilty sometimes count as metadata and so are available. Secondary analyses showed that:
+
+Second limitation is that authors may not wish to share their data at preprint stage. This seems counter intuitive to the core purpose of preprints, which is to solict feedback on the methods. It is particularly weak in lgiht of the substantial impact that preprints posted on repositories like medRxiv have played in the recent pandemic. Secondary analyses showed that:
+
+
+Third is that the authors could be planning to update their DAS before final publication. Secondary analyses showed that:
+
+
+
+
+
+
+## Recommendations for policy
+
+(Provisional)
+
+Critical peer-review of data availabilty statements is required prior to publication. If you don't want to make the data available, that's fine, but you need to have a very good reason why. 
+
+Many journals require data sharing in principle. The BMJ editorial on requiring data-sharing ends with the final quote: "An initial investment of time and money is needed to prepare trial data for sharing, but after the first use there are few additional costs; in essence, the value of the data increases with each use". Perhaps further grants should require a direct budget line for costs associated with making the reulting data open-access, and should assess the 
+
+The BMJ editorial on data sharing
+
+Further, improved guidelines
+For example, the upcoming PRISMA (Preferred Reporting Items for Systematic Reviews and Meta-analyses)
+
+Additionally, and crucially, data availability statements should be subjected to critical peer review. If authors are unable to share their data 
+
+#####
+
+# Highlights
+
+## What is already known on this topic
+
+## What this study adds
+
+#####
+
+# Bibliography
+
+
