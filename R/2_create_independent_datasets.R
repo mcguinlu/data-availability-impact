@@ -3,13 +3,10 @@
 n_rev <- 2
 n_subset <- 200
 
-
 # PRIMARY DATASET ---------------------------------------------------------
 
-
-
-# P1&2
-# requires whole dataset, but must be blinded to study details
+# Analyses: P1 & P2
+# Requires whole dataset (4101 records), but reviewers must be blind to metadata
 
 df <- read.csv("data/data-avail.csv", stringsAsFactors = FALSE)
 
