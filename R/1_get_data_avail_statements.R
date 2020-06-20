@@ -1,12 +1,3 @@
-# SET-UP ------------------------------------------------------------------
-
-# Library calls
-library(medrxivr)
-library(rvest)
-library(stringr)
-library(dplyr)
-
-
 # GET RECORDS -------------------------------------------------------------
 
 # Limit to those records posted on medRxiv up to & including 1st May 2020
@@ -54,10 +45,12 @@ for (link in 1:nrow(df)) {
   # Capture, clean and coerce text in ".external-links-view" node to single cell
   df$data_avail[link] <- page %>%
     html_node(".external-links-view") %>%
-    str_extract_all(., "(?<=\\>)[^<\n]+", ) %>% 
+    gsub("\n"," ", .) %>%
+    str_extract_all(., "(?<=\\>)[^<\n]+", ) %>%
     .[[1]] %>% 
     paste(., collapse = " ") %>%
-    gsub("Data Availability ","",.) 
+    gsub("Data Availability ","", ., ignore.case = FALSE) %>%
+    trimws()
   
   # Process takes a while, due to delay between scrapes
   # Every 100 records, save to a temporary file
@@ -69,6 +62,4 @@ for (link in 1:nrow(df)) {
 
 # Save final dataframe to CSV file
 write.csv(df, "data/data-avail.csv", row.names = FALSE)
-
-
 

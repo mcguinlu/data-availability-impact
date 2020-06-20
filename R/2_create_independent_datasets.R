@@ -11,7 +11,7 @@ n_subset <- 200
 df <- read.csv("data/data-avail.csv", stringsAsFactors = FALSE)
 
 df_blind <- df %>%
-  dplyr::select(ID, data_avail, published) %>%
+  dplyr::select(ID, data_avail) %>%
   mutate(decision = as.character(""))
 
 for (rev in 1:n_rev) {
