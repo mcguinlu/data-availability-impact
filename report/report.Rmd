@@ -106,15 +106,15 @@ We want to produce some primary evidence about the distribution of preprint
 
 __Primary questions__
 
-* __P1__ What is the distribution of data availability statements across the categories listed in Table \@ref(tab:categorylabels), and does this differ when stratified on subsequent publication?
+* __P1:__ What is the distribution of data availability statements across the categories listed in Table \@ref(tab:categorylabels), and does this differ when stratified on subsequent publication?
 * __P2__ For preprints whose final version was posted to medRxiv prior to 1st January 2020, does an "open" data availability statement associate with subsequent publication?
 
 __Secondary questions__
 
-* __S1__ Do data availability statements change between preprint and publication, and so does this analysis reflect the distribution of DAS in medicine?
-* __S2__ Some preprints claim that a data availability statement is not applicable, or that the study generated no data. For what proportion is this true?
-* __S3__ Some preprints propose to make their data available following publication. For those that have been subsequently published, what proportion actually do so?
-* __S4__ For a random sample of papers that do not report whether code is available in the data sharing statement, how many have a code available in the manuscript proper? [**LAM: hoping to assess the claim that code availability is routinely included in the "Data" availability statment**]
+* __S1:__ Do data availability statements change between preprint and publication? If so, do they become more open or more closed?
+* __S2:__ For a random sample of preprints, how frequently is code availability reported in the manuscript proper, but not described in the data sharing statement? [**LAM: hoping to assess the claim that code availability is routinely included in the "Data" availability statement**]
+* __S3:__ Some preprints propose to make their data available following publication. For those that have been subsequently published, what proportion actually do so?
+
 
 #####
 
@@ -122,8 +122,6 @@ __Secondary questions__
 
 tab <- rio::import(here("report","table-data","categories.xlsx")) %>%
     replace(is.na(.), "")
-
-knitr::kable(tab)
 
 ft <- flextable(tab)
 ft <- bg(ft, bg = "#A6A6A6", part = "header")
@@ -137,8 +135,6 @@ ft <- set_table_properties(ft, layout = "autofit")
 
 flextable:::knit_print.flextable(ft)
 
-
-
 ```
 
 #####
@@ -151,26 +147,27 @@ The data availability statements of preprints posted on the medRxiv preprint rep
 
 ## Manual coding
 
+__Primary analyses__
+
 The data availability statements for each record were labeled by two independent researchers. Researchers were only provided with the data availability statements, and as a result, were blind to the associated preprint metadata (e.g. title, authors, corresponding author institution) in case this could affect their assessments. Any disagreements in the coding of the DAS were resolved through discussion with a third researcher. The labels used to classify the statements and examples of each are show in Table \@ref(tab:categorylabels).
 
 Due to our large sample, we took authors at their word. For example, if an author team claimed that all data used in the manuscript was available in the manuscript or as a supplemental file, or that their article did not use any data. However, claims to make it publicly at some point in the future (except through a formal embargo process, e.g. OSF) were counted as not available. Similarly as we sought to blind assessors to the study design - this feeds into our theory that data availability statements should be self contained - if no data is shared, they should justify how their design produced no data. This is particularly true for preprints hosted in medRxiv, which does not accept editorials/commentaries.
 
-Where. See the Supplementary Table XXXX for some illustrative examples.
+Where DAS met multiple categories, we used prespecified decision rules to assign a label - see Supplementary Table XXXX for the decision tree and some illustrative examples.
 
-For our secondary analyses, 
+__Secondary analyses__
 
-__[S1]__ To assess whether DAS statements change between preprint and published articles, the data availability statements accompanying the published articles for 200 records were assessed using the criteria presented in Table \@ref(tab:categorylabels). The percentage of studies for which a discrepancy between, and the direction of discrepancy (e.g. does it become more closed or more open) were assessed.
+To assess whether DAS statements change between preprint and published articles, the data availability statements accompanying the published articles for 200 records were assessed using the criteria presented in Table \@ref(tab:categorylabels). The percentage of studies for which a discrepancy between, and the direction of discrepancy (e.g. does it become more closed or more open) were assessed.
 
-__[S2]__ To assess whether code is frequently reported in data availability statements, and so a separate code availability statement is not needed/a composite "Material availability statement" is not preferable, the DAS
-for 250 records were assessed. The full text PDFs for these records were also assessed to see if they made reference to code being available. 
+To assess whether code is frequently reported in data availability statements, and so a separate code availability statement is not needed/a composite "Material availability statement" is not preferable, the DAS
+for 200 records were assessed. The full text PDFs for these records were also assessed to see if they made reference to code being available. 
 
-__[S3]__ To assess whether claims that data will be provided post publication, the data availability statements accompanying the published articles for 200 records with a label of 3 from Table \@ref(tab:categorylabels) (or the total number of records with this label, if smaller than 100) that were subsequently published were assessed. 
-
+To assess whether claims that data will be provided post publication, the data availability statements accompanying the published articles for 200 records with a label of 3 from Table \@ref(tab:categorylabels) (or the total number of records with this label, if smaller than 100) that were subsequently published were assessed. 
 ## Analysis
 
-Records for which a DAS was coded as "Not applicable" (Label 1 from Table \@ref(tab:categorylabels)) were excluded from any further analysis. We will plot the distribution of preprints across the seven categories presented in Table \@ref(tab:categorylabels), initially included all records and then stratifying by subsequent publication status. For the subset of preprints which had a final version posted up to and including 1st January, we will calculate an odds ratio (OR) and 95% confidence interval to investigate the association between an "open" DAS and publication by XXXX July 2020.
+ We plotted the distribution of preprints across the seven categories presented in Table \@ref(tab:categorylabels), initially included all records and then stratifying by subsequent publication status. For the subset of preprints which had a final version posted up to and including 1st January, we will calculate an odds ratio (OR) and 95% confidence interval to investigate the association between an "open" DAS and publication by XXXX July 2020. Records for which the DAS was coded as "Not applicable" (Label 1 from Table \@ref(tab:categorylabels)) were excluded from this analysis.
 
-For each of the four secondary analysis, we will calculate and present percentages.
+For each of the secondary analysis, we will calculate and present relevant percentages.
 
 ## Material availability section
 
@@ -248,7 +245,10 @@ n_not_available_percent <- paste0(n_not_available, " (",round((n_not_available/n
 
 ```
 
-Of a test subset of 100 records, `r n_excluded` were excluded as they were articles to which data availability statements did not apply (e.g. a protocol for a systematic review or clinical trial), leaving `r n_total` remaining records. Of these, `r n_not_available_percent` had made their data available as per the criteria in Table \@ref(tab:categorylabels). A illustration of the distribution can be seen in Figure \@ref(fig:fig-distrib).
+Of a test subset of 100 records, `r n_excluded` were excluded as they were articles to which data availability statements did not apply (e.g. a protocol for a systematic review or clinical trial), leaving `r n_total` remaining records. Of these, `r n_available_percent` had made their data available as per the criteria in Table \@ref(tab:categorylabels). A illustration of the distribution can be seen in Figure \@ref(fig:fig-distrib).
+
+&nbsp;
+
 
 ```{r fig-distrib, fig.cap="Distribution of preprint by category and subcategory. The numbers on the X axis refer to the key column presented in the table above."}
 library(ggplot2)
@@ -264,12 +264,11 @@ ggplot(df) +
   scale_x_continuous(labels = as.character(df$decision), breaks = df$decision)
 ```
 
+&nbsp;
+
 The association between an "open" data availabilit statement and subsequent publication was `r or_text`.
 
 ``` {r}
-
-sample_1 <- read.csv(here("data","sample1.csv"),
-                     stringsAsFactors = FALSE)
 
 ```
 
@@ -277,38 +276,31 @@ sample_1 <- read.csv(here("data","sample1.csv"),
 
 # Discussion
 
-The sharing of data in the health sciences is substantially more challenging that. 
-
-A range of potential solutions and suggestions:
-
-Ethical consent is required at the potin of collection to allow 
-
-
-Critical peer review of data availability statements. 
-
-Requires a fundamental shift in the approach to assessing - if you want us to believe your claims, then 
-
-A previous editorial identified that trust between researchers was seen as a barrier - 
-
 Trust, but verify. 
 
+
+The sharing of data in the health sciences is substantially more challenging for other disciplines, e.g. ecology, due to the potential for patient re-identification. 
+
+Range of suggestions:
+
+Ethical consent is required at the potion of collection to allow for subsequent public data sharing.
+
+Critical peer review of data availability statements is needed.
+
+Detailed description of the datasets used is required - lots point towards a data portal but do not give a unique identifier (contrast between Labels 4 and 7)
+
+A previous editorial identified that trust between researchers was seen as a barrier - 
 
 
 ## Limitations
 
 We believe there are three major critiques of our approach that we wish to address. 
 
-The primary one is that manuscripts might have included links to the data/code within the text. Our response to this important limitation is that if this is the case, data availability statements are redundant. Whats the point of having something no one uses? Further, while the full-text of a manuscript is often locked behind a paywall, the data availability sometimes count as metadata and so are available. Secondary analyses showed that:
+The primary one is that manuscripts might have included links to the data, or more information that uniquely identifies the dataset from a data portal within the text. If this is the case, it raises serious questions about the purpose and usefulness of DAS. Further, while the full-text of a manuscript is often locked behind a paywall, the data availability sometimes count as metadata and so are available. 
 
-Second limitation is that authors may not wish to share their data at preprint stage. This seems counter intuitive to the core purpose of preprints, which is to solicit feedback on the methods. It is particularly weak in light of the substantial impact that preprints posted on repositories like medRxiv have played in the recent pandemic. Secondary analyses showed that : [results of S]
+Second limitation is that authors may not wish to share their data at preprint stage. This seems counter  to the core purpose of preprints, which is to solicit feedback on the methods. It is particularly weak in light of the substantial impact that preprints posted on repositories like medRxiv have played in the recent pandemic. We performed a secondary analyses to assess whether those preprints promsining to make data available post-publication did in fact do so, which showed. . . 
 
-
-Third is that the authors could be planning to update their DAS before final publication. Secondary analyses showed that:
-
-
-
-
-
+Third is that the authors could be planning to update their DAS before final publication. We performed a secondary analyses to assess whether DAS changed substantially between preprint and publication, which showed. . . 
 
 ## Recommendations for policy
 
@@ -321,6 +313,7 @@ Many journals require data sharing in principle. The BMJ editorial on requiring 
 The BMJ editorial on data sharing
 
 Further, improved guidelines
+
 For example, the upcoming PRISMA (Preferred Reporting Items for Systematic Reviews and Meta-analyses)
 
 Additionally, and crucially, data availability statements should be subjected to critical peer review. If authors are unable to share their data 
