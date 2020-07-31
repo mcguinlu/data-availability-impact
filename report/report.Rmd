@@ -62,7 +62,7 @@ Reproducibility; Data sharing; Data availability statements; Journalology; Prepr
 # Abstract
 
 __Objective__   
-To determine whether medRxiv data availablility statements are "open" or "closed", and whether this changes on publication based on journal data sharing policy.
+To determine whether medRxiv data availability statements are "open" or "closed", and whether this changes on publication based on journal data sharing policy.
 
 __Design__  
 Observational study of the data availability statements accompanying preprints posted on the medRxiv repository between 25th June 2019 and 1st May 2020, and their published counterparts.
@@ -254,7 +254,7 @@ However, while we have focused on primarily on the role of journals above, some 
 
 ## Material available statement
 
-All materials (data, code and supporting information) are available on request to the corresponding author, following payment of one red-nosed reindeer (or alternatively can be found at https://github.com/mcguinlu/data-availability-impact, archived at time of submission on Zenodo (DOI:)). 
+All materials (data, code and supporting information) are available on request to one S. Claus (or alternatively can be found at https://github.com/mcguinlu/data-availability-impact, archived at time of submission on Zenodo (DOI: 10.5281/zenodo.3968301)). 
 
 ## Contributorship statement
 
