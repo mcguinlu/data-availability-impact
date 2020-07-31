@@ -1,0 +1,56 @@
+---
+title: "Supplementary materials"
+bibliography: 
+  - references.bib
+  - references2.bib
+  - references_packages.bib
+csl: ama.csl
+output:
+  bookdown::word_document2:
+      toc: true
+      toc_depth: 2
+      reference_docx: word-styles-reference-01.docx
+---
+
+``` {r, echo = FALSE, warning=FALSE, message=FALSE }
+library(dplyr)
+library(kableExtra)
+library(rio)
+library(MASS)
+library(here)
+library(epitools)
+library(flextable)
+library(ftExtra)
+
+source(here("R","0_library.R"))
+source(here("R","3_results.R"))
+
+knitr::opts_chunk$set(echo=FALSE, warning = FALSE, message = FALSE)
+
+```
+
+#####
+
+# Supplementary Tables
+
+## ST 1: Change in data availability statement openness by preprint decision category and journal policy
+
+```{r ft.align="left", tab.cap = "Change in data availability openness by preprint decision and journal policy"}
+ft_s1_supp2
+```
+
+#####
+
+## ST 2: Change in data availability statement openness by journal
+
+```{r ft.align="left", tab.cap = "Change in data availability openness by journal"}
+ft_s1_supp
+```
+
+#####
+
+# Supplementary Materials
+
+##  SM 1: decision examples for data availability statements meeting mutliple categories
+
+For items that met the criteria for multiple categories (e.g. "Most of the data analyzed in this manuscript are provided either within the manuscript itself, or in the manuscript posted by Sasani et al. on bioRxiv at  https://www.biorxiv.org/content/10.1101/552117v2 and its accompanying links; additional data may be accessed by contacting the corresponding author (Dr. Cawthon)."), we took a conservative approach, and categorized them based on the least permissive aspect of the statement. This approach was taken on the basis that __*all*__ data must be available - for example, in the above statement, the additional information that is available on request may be required in order to reproduce the analysis. 

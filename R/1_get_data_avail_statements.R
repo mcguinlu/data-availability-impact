@@ -8,19 +8,18 @@ snap_url <- paste0("https://raw.githubusercontent.com/mcguinlu/medrxivr-data/",
                    "795081b8895faba1868e4978acfc725c456d0449/",
                    "snapshot.csv") 
              
-df <- mx_search(data = read.csv(snap_url,
-                                stringsAsFactors = FALSE),
-                query = "*",
-                to.date = 20200501)
-
-# note about excluding records when filtering on date.
-# Need to filter on first publication date
-
-# Generate new empty variable to hold availability statements
-df$data_avail <- character(nrow(df))
+df <- medrxivr::mx_search(
+  data = read.csv(snap_url,
+                  stringsAsFactors = FALSE),
+  query = "*",
+  to_date = 20200501
+)
 
 
 # SCRAPE DATA AVAILABILITY STATEMENTS -------------------------------------
+
+# Generate new empty variable to hold availability statements
+df$data_avail <- character(nrow(df))
 
 # Extract availability statements by browsing to the webpage for each record
 for (link in 1:nrow(df)) {
@@ -63,3 +62,25 @@ for (link in 1:nrow(df)) {
 # Save final dataframe to CSV file
 write.csv(df, "data/data-avail.csv", row.names = FALSE)
 
+# ADD MANUALLY EXTRACTED PUBLISHED DAS ------------------------------------
+# This is used to create the S2 datasets in "2_create_independent_datasets.R"
+
+df <- read.csv("data/data-avail.csv", stringsAsFactors = FALSE)
+
+# Read in manually extracted published DAS
+rev1 <- rio::import("data/complete/published_DAS_extraction/published_DAS_extraction_rev1.xlsx")
+
+rev2 <- rio::import("data/complete/published_DAS_extraction/published_DAS_extraction_rev2.xlsx")
+
+pub_df <- rbind(rev1,rev2) %>%
+  mutate(published_DAS = ifelse(published_DAS == "9", "9 - None", published_DAS)) %>%
+  select(ID,published_DAS)
+
+# Perform checks on published DAS:
+# add publisher info and group by journal, to check that all have/don't have a
+# DAS (helps to validate extraction)
+
+df <- merge(df, pub_df, all.x = TRUE)
+
+# Save 
+write.csv(df, "data/complete/published_DAS_extraction/data-avail_with_pub_DAS.csv", row.names = FALSE)

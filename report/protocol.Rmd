@@ -1,0 +1,160 @@
+---
+title: ""
+bibliography: 
+  - references.bib
+  - references2.bib
+  - references_packages.bib
+csl: ama.csl
+output:
+  bookdown::word_document2:
+      toc: false
+      toc_depth: 3
+      reference_docx: word-styles-reference-01.docx
+---
+
+``` {r, echo = FALSE, warning=FALSE, message=FALSE }
+library(dplyr)
+library(kableExtra)
+library(rio)
+library(MASS)
+library(here)
+library(epitools)
+library(flextable)
+library(ftExtra)
+
+here::set_here(path = "../")
+
+knitr::opts_chunk$set(echo=FALSE, warning = FALSE, message = FALSE)
+
+```
+
+# Front Matter
+__Title: __  
+Protocol for a descriptive analysis of the data availability statements accompanying medRxiv preprints
+
+&nbsp;
+
+__Authors and Affiliations__
+
+Luke A McGuinness^1,2^ (ORCID: 0000-0001-8730-9761), 
+Athena L Sheppard ^3^ (ORCID: 0000-0003-1564-0740)
+
+(1) MRC Integrative Epidemiology Unit at the University of Bristol, Bristol, UK
+(2) Population Health Sciences, Bristol Medical School, University of Bristol, Bristol, UK
+(3) Department of Health Sciences, University of Leicester, Leicester UK
+
+&nbsp;
+
+__Corresponding author:__  
+
+Luke McGuinness; Bristol Medical School, University of Bristol,
+Canynge Hall, 39 Whatley Road, Bristol, BS8 2PS, United Kingdom; luke.mcguinness@bristol.ac.uk
+
+&nbsp;
+
+__Funding__
+
+
+LAM is supported by an NIHR Doctoral Research Fellowship (DRF-2018-11-ST2-048). The views expressed in this article are those of the authors and do not necessarily represent those of the NHS, the NIHR, MRC, or the Department of Health and Social Care.
+
+&nbsp;
+
+__Keywords__
+
+Preprints; Observational study; Reproducibility; Data sharing
+
+#####
+
+# Abstract
+
+__Objective__ 
+To assess the distribution of "open" vs "closed" data availability statements of records in a medical preprint server, and for those preprints that were subsequently published, compare the preprint and published versions of the data availability section 
+
+__Design__ Observational study of the data availability statements accompanying preprints posted on the medRxiv repository between 25th June 2019 and 1st May 2020.
+
+__Setting__ 
+medRxiv preprint repository.
+
+
+#####
+
+
+
+# Introduction
+
+## Short background
+
+Data availability statements are used to provide readers with important information about whether and where the data described in an academic paper are available. Several journals have recently implemented policies that require authors to complete a data availability statement. medRxiv, the preprint repository for manuscripts in the medical, clinical, and related health sciences,[@rawlinson2019a] has implemented a similar approach, requiring manuscript authors to complete a data availability statement in order to have their preprint accepted to the server. 
+
+Our primary aim is to provide observational evidence on the "openness" of the data availability statements accompanying medRxiv preprints, and to compare preprint vs published statements for the same manuscript to assess the impact of peer review/journal polices. We also intend to perform some additional analyses in order to provide recommendations on best practice related to making material availability statements more useful.
+
+&nbsp;
+
+## Justification of approach
+
+Preprints, in particular those hosted on medRxiv, have impacted the academic discourse around the recent (and ongoing) COVID-19 pandemic to a similar, if not greater, extent than published manuscripts. As such, assessing the "openness" of preprint data availability statements in their own right is worthwhile. Additionally, comparing the preprint and published data availability statements for the same paper allows for the potential impact of journal data sharing policies to be examined. 
+
+#####
+
+# Research questions
+
+__Primary question__
+
+* What is the distribution of data availability statements across the categories listed in Table \@ref(tab:categorylabels)?
+
+__Secondary questions__
+
+* **S1:** Do data availability statements change between preprint and publication, for a random sample of 400 preprints that were subsequently published? If so, do they become more open or more closed on publication? 
+* **S2:** For a random sample of 400 preprints, how frequently is code availability reported in the manuscript proper, but not described in the data sharing statement?
+* **S3:** Some preprints propose to make their data available following publication. For those that have been subsequently published, what proportion actually do so? And does the proportion differ if the preprint data availability statements includes a link to an embargoed repository?
+
+#####
+
+``` {r categorylabels, ft.align="left", tab.cap='Categories used to classify the data availability statements'}
+
+tab <- rio::import(here("report","table-data","categories.xlsx")) %>%
+    replace(is.na(.), "")
+
+ft <- flextable(tab[,1:4])
+ft <- bg(ft, bg = "#A6A6A6", part = "header")
+ft <- bold(ft, part = "header")
+ft <- bold(ft, j = 1, part = "body")
+ft <- align(ft, align = "center", part = "all" )
+ft <- bg(ft, i = ~ seq(from = 1, to = nrow(tab)) %% 2 == 0, bg = "#DDDDDD", part = "body")
+ft <- fontsize(ft, size = 9, part = "all")
+ft <- set_table_properties(ft, layout = "autofit")
+ft <- align(ft, j = 4, align = "left", part = "body")
+
+ft
+
+```
+
+#####
+
+# Methods
+
+## Data extraction
+
+The data availability statements of preprints posted on the medRxiv preprint repository between 25th June 2019 (the date of first publication of a preprint on medRxiv) and 1st May 2020 will be extracted from the static snapshot of the medRxiv database taken on 26th May 2020 (snapshot taken using the _medrxivr_ and _rvest_ R package [@medrxivr], and available  [here](https://raw.githubusercontent.com/mcguinlu/medrxivr-data/795081b8895faba1868e4978acfc725c456d0449/snapshot.csv)). The data availability statements associated with these records will be scraped using the _rvest_ R package.[@rvest]
+
+## Coding and Analyses
+
+__Primary analyses__
+
+The data availability statements for each record will be labeled by two independent researchers. Researchers will only be provided with the data availability statements, and as a result, will be blind to the associated preprint metadata (e.g. title, authors, corresponding author institution) in case this could affect their assessments. Any disagreements in the coding of the data availability statements will be resolved through discussion with a third researcher. The labels used to classify the statements and examples of each are show in Table \@ref(tab:categorylabels), and are based on the Findability and Accessibility elements of the FAIR framework,[@wilkinson2016] the categories used by previous effort to categories published data availability statements,[@colavizza2020; @federer2018] and discussion with colleagues. Due to our large sample (n=4101), we will take authors at their word when coding the data availability statements. For example, if an author team claims that all data used in the manuscript is available in the manuscript or as a supplemental file, or that their article did not use any data, we will accept this as true.
+
+We will pilot our coding process on a random subset of studies (~2.5%, 101 records) to ensure that our categories are functional and to address any issues that may impact intra-rater reliability. These records will also be screened again as part of the full set to examine inter-rater reliability/consistency. We will then plot the distribution of preprints across the nine categories presented in Table \@ref(tab:categorylabels), initially included all preprints and then stratifying by subsequent publication status (by 24th July 2020).
+
+&nbsp;
+
+__Secondary analyses__
+
+**S1:** To assess whether data availability statements change between preprint and published articles, the data availability statements accompanying the published articles for a random ~10% (n=400) of records (or the total number of records published, if smaller than 400) will be assessed using the criteria presented in Table \@ref(tab:categorylabels). The published data availability statements will be extracted into an Excel sheet by a single reviewer, to allow for easy review, and then coded by both reviewers independently. The percentage of studies for which a discrepancy between the preprint and published data availability statements exists will be presented. Where discrepancies exists, the direction of the discrepancy will be coded (more closed (-1), more open (+1), or the same (0)), and a summary presented. We will also summarize the discrepancies by journal, to explore whether there is a large change towards/away from openness for any given journal, and will narratively explore the characteristics of these journals (e.g. does the journal have a strict data sharing policy?).
+
+**S2:** To assess whether code is frequently reported in the full manuscript but is not captured by data availability statements, indicating that a separate code availability statement or a composite "Material availability statement" might be preferred, the data availability statements for a random ~10% (n=400) of records will be assessed to see if they contain reference to the availability of code/scripts (0, code availability not described; 1, code availability described). The full text PDFs of the most recent version of these preprints will then also be assessed to see if they contain a description of code availability (0, code availability not described; 1, code availability described). We will then compare the proportions of code availability between the full manuscript vs the data availability statements. 
+
+**S3:** To verify claims that data will be made open following publication, the data availability statements accompanying the published articles for all records with a label of 3 from Table \@ref(tab:categorylabels) that were subsequently published (as per the 26th May snapshot) will be assessed. We will also investigate whether the likelihood of making the data available was associated with including a link to a repository in the preprint data availability statements (i.e. comparing the proportions of open data availability statements between published studies whose preprints fall into categories 3 or 4 in Table \@ref(tab:categorylabels)).
+
+##### 
+
+# Bibliography

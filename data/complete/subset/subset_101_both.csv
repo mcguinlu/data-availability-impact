@@ -1,0 +1,102 @@
+"ID","data_avail","rev1_decision","rev1_comment","rev2_decision","rev2_comment","agree"
+6,"The data used in this project is a part of the EPILEPSIAE dataset, which is not publicly available. For this reason, there are no specific paths or identification numbers in the code repository which is publicly available. The code is provided here: https://github.com/ostojanovic/seizure_prediction   https://github.com/ostojanovic/seizure_prediction",1,"",1,"",1
+28,"Data are available from publications included in this manuscript",1,"",1,"",1
+36,"Data is available in the supplementary data file.",7,"",7,"",1
+65,"Microbial sequencing data will be available from the NCBI Sequence Read Archive database, accession number is pending. Raw bile acid (metabolomic) data will be available in UCSD Metabolomics Workbench, a metabolomic repository, study ID is pending.",4,"",4,"",1
+75,"The publication list where we collected angioscopic images and the source code of the prediction and generative models are available from the public online repository. The de-identified angioscopic images we used in this study are available directly from the corresponding author upon reasonable request.   http://dx.doi.org/10.17632/9dx23j5d64.1",2,"",2,"",1
+119,"Anonymized data will be shared by request from any qualified investigator for the sole purpose of replicating procedures and results presented in the article and as long as data transfer is in agreement with EU legislation on the general data protection regulation. Data underlying the results described in our manuscript are available from at Attention: Conor Owens-Walton Academic Unit of Psychiatry &amp; Addiction Medicine Australian National University Medical School Building 4, Level 2, Canberra Hospital Woden, A.C.T. 2605 AUSTRALIA or (conor.owens-walton@anu.edu.au)",2,"",2,"",1
+157,"The study used simulated data only. The code used to generate the data is reposited online (https://github.com/akira-endo/TND-biascorrection/)   https://github.com/akira-endo/TND-biascorrection/",8,"",8,"",1
+244,"All necessary data and code are available at https://github.com/oeh041/Priority_weights and https://doi.org/10.5281/zenodo.3256151   https://github.com/oeh041/Priority_weights   https://doi.org/10.5281/zenodo.3256151",8,"",8,"",1
+289,"Anonymised statistical data and analysis are available from the corresponding author.",2,"",2,"",1
+327,"The data used for this study is protected health information that came from the electronic health record system at Oregon Health &amp; Science University, so cannot be made publicly available.",1,"",1,"",1
+365,"All data used in preparation of this manuscript are publicly available.   https://wwwn.cdc.gov/Nchs/Nhanes/",5,"",5,"",1
+378,"The datasets generated during and/or analysed during the current study are available from the corresponding author on reasonable request.",2,"",2,"",1
+481,"This study conducted a literature review and collated all data on age-stratified JE cases from these papers. The full list of these papers and the data extracted is available in the supplement.",7,"",7,"",1
+502,"Data is available upon reasonable request to the corresponding author.",2,"",2,"",1
+513,"The datasets generated and analysed during the current study are available from the corresponding author on reasonable request.",2,"",2,"",1
+555,"Statistical summary maps are available upon request.",2,"",2,"",1
+770,"All data referred to in the manuscript is publicly available through the National Cancer Database (NCDB).",5,"",5,"",1
+787,"N/A",0,"",0,"",1
+794,"Anonymised data will be shared by request from any qualified investigator.",2,"",2,"",1
+897,"Included in Table 1",7,"",7,"",1
+912,"The full summary level association data from the trans-ancestry meta-analysis from this report will be available through dbGAP (accession codes will be available before publication).",4,"",4,"",1
+969,"Data from the vaccine coverage survey are available at https://osf.io/c8xuq/. Absentee data cannot be shared publicly because of protections under the Family Educational Rights and Privacy Act. Influenza hospitalization data may be requested from the California Emerging Infections Program.   https://osf.io/c8xuq/",1,"",1,"",1
+992,"School-level HPV uptake data were extracted from local child health information systems and are not publicly available. School-level factors were downloaded from the Department for Education and the Ofsted websites.",1,"",1,"",1
+1029,"There is no metadata associated with this study. All relevant data files are included as images or supplementary images.",7,"",7,"",1
+1056,"All data are available and archived; transcripts details are not to be published due to confidentiality agreement.",1,"",1,"",1
+1107,"All data are included in this article",7,"",7,"",1
+1121,"1946c data are available from: https://www.nshd.mrc.ac.uk/data/data-sharing/ 1946c, 1958c, 1970c and HSE data are available from the UK Data Archive: https://www.data-archive.ac.uk.   https://www.data-archive.ac.uk   https://www.nshd.mrc.ac.uk/data/data-sharing/",5,"",5,"",1
+1151,"De-identified data is available upon request.",2,"",2,"",1
+1270,"Researchers interested in collaborative work can contact the corresponding author (Claudia E. Kuehni; claudia.kuehni@ispm.unibe.ch) to discuss planned projects or analyses of existing data. The final decision will be made upon presentation of the project to the study<U+0092>s principal investigators.",2,"",2,"",1
+1283,"Approved researchers can obtain the SPARK population dataset described in this study (more details available at https://www.sfari.org/resource/spark/) by applying at https://base.sfari.org.  TOPMed study investigators contributed data to the reference panel, which can be accessed through the Michigan Imputation Server; see https://imputationserver.sph.umich.edu.  Summary statistics from the GWAS conducted here will be available upon publication.",5,"",5,"",1
+1382,"GWAS data is available for data on the linked Dropbox website. Code is available here:  QualityLab: https://bitbucket.org/straubp_vandy/quality_labs/ LabWAS: https://bitbucket.org/juliasealock/labwas/    https://www.dropbox.com/sh/w1pbe0jq1bjkpc5/AAAUIdtBgUybE6iHraE8jvp8a?dl=0",8,"",8,"",1
+1437,"All data is presented in the manuscript.",7,"",7,"",1
+1505,"All code and data for this manuscript is available on github.   https://doi.org/10.5281/zenodo.3634049",8,"",8,"",1
+1784,"The human migration data are obtained from Baidu Migration (link: http://qianxi.baidu.com), and the COVID-19 infection data for China are provided by National Health Commission of China and available from https://ncov.dxy.cn/ncovh5/view/pneumonia.   http://qianxi.baidu.com/   https://ncov.dxy.cn/ncovh5/view/pneumonia",5,"",5,"",1
+1831,"We obtained the data from the Second Hospital of Nanjing. The ownership of the data belongs to  the Second Hospital of Nanjing. Researchers who meet the criteria for access to confidential data can contact the huzhiliangseu@163.com at the  the Second Hospital of Nanjing to request the data.",5,"",2,"",0
+1852,"Data Availability: Public repository data: Vaccination coverage: coverage is available to download from the PoLiCi shiny app : https://shiny.dide.imperial.ac.uk/polici/. Serology surveys: There are seven published surveys used, available at DOI:10.1016/0147-9571(90)90521-T , DOI:10.1093/trstmh/tru086 , DOI: 10.1186/s12889-018-5726-9 , DOI: 10.4269/ajtmh.2006.74.1078 , PMID: 3501739 , PMID: 4004378 , PMID: 3731366 Demographic data: Population level data was obtained from UN WPP https://population.un.org/wpp/, this was disaggregated using Landscan 2014 data https://landscan.ornl.gov/landscan-data-availability. Environmental data: This was obtained from LP DAAC: https://lpdaac.usgs.gov/ and worldclim http://www.worldclim.org/ Yellow fever outbreaks: These were compiled from the WHO weekly epidemiologic record and disease outbreak news https://www.who.int/wer/en/ and https://www.who.int/csr/don/en/ . Data elsewhere: The data from the WHO YF surveillance database and from recent serological surveys from WHO member states in Africa underlying the results presented in the study are available from World Health Organization (contact: William Perea, pereaw@who.int or Laurence Cibrelus, cibrelusl@who.int or Jennifer Horton, jhorton@who.int).",9,"",1,"",0
+1928,"All data except from proprietary sources used in the analysis are made available as Supplemental material.   https://doi.org/10.18130/V3/Z6524P",9,"",1,"",0
+1994,"This study used the National Dataset of Compensation-based statistics (NDS). This dataset is compiled and administered by SafeWork Australia. The NDS is not available for distribution or access by the authors of this article.",1,"",5,"",0
+2048,"Yes. All data are included in the manuscript.",7,"",7,"",1
+2110,"Daily diagnosis number of countries outside China is download from WHO situation reports (https://www.who.int/emergencies/diseases/novel-coronavirus-2019/situation-reports).   https://www.who.int/emergencies/diseases/novel-coronavirus-2019/situation-reports",5,"",5,"",1
+2165,"Harvard Dataverse: Mahalingaiah, Shruthi, 2020, ""The Ovulation and Menstruation Study Report on Cognitive Testing of Survey Instrument, July 5, 2017"", https://doi.org/10.7910/DVN/J0CL9O, Harvard Dataverse, V1   https://dataverse.harvard.edu/dataset.xhtml?persistentId=doi:10.7910/DVN/J0CL9O",8,"",8,"",1
+2235,"All the data used in this article can be downloaded from their original source. The links can be found in the references list.",1,"",1,"",1
+2318,"All information is published in the article",7,"",7,"",1
+2327,"The datasets used and analyzed during the current study are available from the corresponding author on reasonable request.",2,"",2,"",1
+2411,"All data referred to in the manuscript and provided in the manuscript files.",7,"",7,"",1
+2442,"All the data is available, but it is mainly costing data",9,"",1,"",0
+2474,"The data used in the preprint is taken from the following three places, and is public. LInks to the data are given in the manuscript. https://openflights.org/      https://openflights.org/   https://github.com/datameet/railways   https://worldpopulationreview.com/countries/india-population/cities/",5,"",5,"",1
+2643,"All data has been provided or referenced in the manuscript.",7,"",1,"",0
+2970,"Data used for the study is attached as supplementary material. All data used is publicly available.",7,"",7,"",1
+3024,"The data come from open data sources that are linked bellow.    https://www.mscbs.gob.es/profesionales/saludPublica/ccayes/alertasActual/nCov-China/home.htm   https://experience.arcgis.com/experience/50d6c4c5599a43f4bebf517daa3a97b6   https://grafana.sysadm.es/d/Y9Anj9_Wz2dsadasDXCAxz5/coronavirus-spain?orgId=4&amp;refresh=1h",5,"",5,"",1
+3026,"All data used for preparation of this manuscript is publicly available.",1,"",1,"",1
+3030,"The data will be made available upon acceptance of the manuscript for publication in a peer-reviewed journal",4,"",4,"",1
+3067,"The data will be available upon request.",2,"",2,"",1
+3136,"The manuscript uses public data and the data sources are citated",1,"",9,"Data sources are cited (key=1) but clarification that data is publically available (key=5?)",0
+3199,"All data used for validation and reference is publically available through the cited sources. Data generated by the developed models is not publicly available.",1,"",1,"",1
+3334,"Does not apply.",0,"",0,"",1
+3341,"All sequences data have been submitted to the public database (GISAID).   https://platform.gisaid.org/epi3/frontend",5,"",5,"",1
+3371,"The authors confirm that the data supporting the findings of this study are available within the article and its supplementary materials.",7,"",7,"",1
+3372,"All data are fully available without restriction. All data used is from the database listed below.    https://github.com/CSSEGISandData/COVID-19",8,"",8,"",1
+3405,"We used the data given publicly on WorldOMeter, URL https://www.worldometers.info/ coronavirus/.",9,"What if GitHub repo contains lots of data sources?",5,"",0
+3464,"All data referred to in the manuscript are availability.",1,"",1,"",1
+3478,"Model code will be available on request from the author.",1,"",1,"",1
+3498,"The data that support the findings of this study are available from the corresponding author, [MT],upon reasonable request.",2,"",2,"",1
+3533,"Data may be made available upon request after the publication of this work.",2,"",2,"",1
+3599,"All data are included in the manuscript",7,"",7,"",1
+3676,"The data that support the findings of this study are available from the corresponding author, BWB, upon reasonable request.",2,"",2,"",1
+3698,"All data used for this study are freely available and accessible via the given references. Composed datasets are available upon request",2,"",2,"",1
+3822,"The data is available if requited on time.",2,"",2,"",1
+3838,"All data generated or analyzed during this study are included in this article.",7,"",7,"",1
+3862,"All references are available by request.",2,"",2,"",1
+3878,"DATA AVAILABLE ON REQUEST FROM THE AUTHOR",2,"",2,"",1
+3949,"All source data used for this article are included in the supplementary Tables and Files.",7,"",7,"",1
+3984,"the datasets used during the present study are available from the corresponding author upon reasonable request",2,"",2,"",1
+4004,"All relevant clinical data summaries and statistical model outputs to reproduce results are supplied in the text, tables, and supplementary material.",7,"",7,"",1
+4018,"cited in references",1,"",1,"",1
+4019,"Data on patient hospital admissions cannot be shared publicly under the terms of the approvals granted for their use. Applications for access to these data can be made via the Infections in Oxfordshire Research Database https://oxfordbrc.nihr.ac.uk/research-themes-overview/antimicrobial-resistance-and-modernising-microbiology/infections-in-oxfordshire-research-database-iord/ by researchers who meet the criteria for access to confidential data.",5,"",5,"",1
+4030,"All data will be made available.",4,"",4,"",1
+4037,"All data is provided in the manuscript.",7,"",7,"",1
+4051,"The data availability is in accordance with the German data protection law and is only available to the LeTriWa study team specified in the approved data protection concept.",1,"",1,"",1
+4057,"Code and data to reproduce the Bayesian estimation results and produce corresponding figures are archived online at OSF: and available on Github:",1,"",1,"",1
+4079,"The data will be made available to others on reasonable requests to the corresponding author.",2,"",2,"",1
+4221,"there is one link to access of the code",1,"",1,"",1
+4234,"We used external data from: 1) TurkStat data 2) Turkey Health Statistics   http://tuik.gov.tr/PreIstatistikTablo.do?istab_id=1632   https://www.saglik.gov.tr/TR,62400/saglik-istatistikleri-yilligi-2018-yayinlanmistir.html",8,"",8,"",1
+4247,"All source code and documentation of this project is publicly available at https://github.com/ictr/covid19-outbreak-simulator   https://github.com/ictr/covid19-outbreak-simulator",9,"Coding project - might not have data?",8,"",0
+4285,"References to the raw values of the used data are given in the manuscript. The cleared data is available upon request.",2,"",2,"",1
+4295,"The datasets generated during and/or analysed during the current study are available from the corresponding author on reasonable request.",2,"",2,"",1
+4398,"Data available upon request",2,"",2,"",1
+4450,"Data were extracted from the Veterans Affairs Informatics and Computing Infrastructure (VINCI), and thus are not publicly available.",1,"",1,"",1
+4499,"All data referred to our manuscript is available.",1,"",1,"",1
+4539,"All relevant data are within the paper and its Supporting Information files.",7,"",7,"",1
+4544,"The data that support the findings of this study are openly available at RSNA Intracranial Hemorrhage Detection Website.   https://www.kaggle.com/c/rsna-intracranial-hemorrhage-detection",8,"",8,"",1
+4572,"All relevant data are within the paper.",7,"",7,"",1
+4784,"All the data referred to in the manuscript comes from published papers.",1,"",1,"",1
+4788,"Data on Buruli ulcer and M. ulcerans distribution We used previously compiled spatial datasets of point locations of recorded occurrences of BU disease in humans, and of detection of M. ulcerans genetic material in biotic and abiotic environmental samples.  These datasets are openly available. Data for the final models was extracted from the database on 03/01/2020.    https://datacompass.lshtm.ac.uk/1143/",8,"",8,"",1
+4878,"No external datasets or supplementary material online was utilized. All data originated from Cedars-Sinai Medical Center.",1,"",1,"",1
+4973,"The National Health Commission of the People's Republic of China has published daily numbers of confirmed cases of COVID-19 since January 20, 2020; see http://www.nhc.gov.cn/xcs/yqtb/list_gzbd.shtml  for all news releases.",5,"",5,"",1
+5060,"Data used in the current analysis will be made available on request. The data has currently not been uploaded on a repository or online database.",2,"",2,"",1
+5076,"The data used in the paper is also explicitly described in the paper.",9,"",7,"",0
+5192,"The data and tools that support the findings of this study are openly available in http://poolkeh.github.io/ and https://poolkeh.herokuapp.com/.   https://poolkeh.herokuapp.com/   http://poolkeh.github.io/",8,"",8,"",1
+5210,"Data is publicly available",1,"",1,"",1
+5290,"The data are available upon request.",2,"",2,"",1
