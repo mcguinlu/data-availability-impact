@@ -147,11 +147,11 @@ for (rev in 1:n_rev) {
 }
 
 # Download copies of PDFs for the 400 records in this set. Means that reviewer's
-# can work offline if needs be. Use modified mx_download_ID() function to save
-# by unique ID rather than DOI and version number (default
-# medrxivr::mx_download() behaviour). mx_download_ID() is defined in the
-# 0_library.R file
-mx_download_ID(df_s2_full,
-               directory = here("data","s2_pdf"),
-               create = TRUE,
-               print_update = 50)
+# can work offline if needs be. 
+mx_download(
+  df_s2_full,
+  name = "ID",
+  directory = here("data", "s2_pdf"),
+  create = TRUE,
+  print_update = 50
+)

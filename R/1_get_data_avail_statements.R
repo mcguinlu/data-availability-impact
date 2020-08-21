@@ -4,17 +4,13 @@
 # Using medRxiv snapshot 2020-05-26 14:16
 # Returns 4101 records
 
-snap_url <- paste0("https://raw.githubusercontent.com/mcguinlu/medrxivr-data/",
-                   "795081b8895faba1868e4978acfc725c456d0449/",
-                   "snapshot.csv") 
+mx_data <- medrxivr::mx_snapshot("795081b8895faba1868e4978acfc725c456d0449") 
              
 df <- medrxivr::mx_search(
-  data = read.csv(snap_url,
-                  stringsAsFactors = FALSE),
+  data = mx_data,
   query = "*",
-  to_date = 20200501
+  to_date = "2020-05-01"
 )
-
 
 # SCRAPE DATA AVAILABILITY STATEMENTS -------------------------------------
 

@@ -554,15 +554,12 @@ ft <- flextable(df4) %>%
 # 
 cv_query = c("[Cc][Oo][Vv][Ii][Dd]", "[Cc]oronavir", "\\b[Nn][Cc][Oo][Vv]\\b")
 
-snap_url <- paste0("https://raw.githubusercontent.com/mcguinlu/medrxivr-data/",
-                   "795081b8895faba1868e4978acfc725c456d0449/",
-                   "snapshot.csv") 
-
+mx_data <- medrxivr::mx_snapshot("795081b8895faba1868e4978acfc725c456d0449")
+                   
 cv_num <- medrxivr::mx_search(
-  data = read.csv(snap_url,
-                  stringsAsFactors = FALSE),
+  data = mx_data,
   query = cv_query,
-  to.date = 20200501
+  to_date = "2020-05-01"
 ) %>%
   nrow()
 
