@@ -498,18 +498,6 @@ ft_s2 <- flextable::flextable(df_s2) %>%
 
 # S3: Do those who promise to make it available, actually do so? --------------
 
-df4 <- merge(df, df_reference, all.x = TRUE) %>%
-  filter(preprint_decision %in% c(3,4)) %>%
-  group_by(preprint_decision) %>%
-  summarise(n_pub = sum(published_decision_group),
-            n = n(),
-            percent = paste0(round(n_pub/n*100,1),"%"),
-            'Number of records' = n,
-            'Open on publication' = paste0(n_pub," (",percent,")")) %>%
-  mutate(Group = case_when(preprint_decision == 3 ~ "Available in future (link)",
-                           preprint_decision == 4 ~ "Available in future (no link)")) %>%
-  dplyr::select(Group,'Number of records','Open on publication')
-
 n_future <- df_pre %>%
   filter(preprint_decision %in% c(3,4)) %>%
   nrow() %>%
@@ -539,13 +527,49 @@ n_future <- df_pre %>%
   paste0(" (", round(./n_records*100,1),"%)")
 
 
+df4 <- merge(df, df_reference, all.x = TRUE) %>%
+  filter(preprint_decision %in% c(3,4)) %>%
+  group_by(preprint_decision) %>%
+  mutate(pre_total = n())  %>%
+  group_by(preprint_decision, published_decision) %>%
+  mutate(pub_total = n()) %>%
+  mutate(Group = case_when(preprint_decision == 3 ~ "Available in future (link)",
+                           preprint_decision == 4 ~ "Available in future (no link)")) %>%
+  dplyr::select(Group, published_decision, pub_total, pre_total) %>%
+  distinct() %>%
+  arrange(Group, published_decision) %>%
+  mutate('Preprint Category' = Group,
+        'Number of published studies' = paste0(pub_total," (",paste0(round(pub_total/pre_total*100,1),"%"),")"),
+         'Published Category' = published_decision,
+         'Number of preprints' = pre_total) %>%
+  ungroup() %>%
+  dplyr::select('Preprint Category', 'Number of preprints','Published Category', 'Number of published studies') %>%
+  mutate('Published Category' = as.character(.$'Published Category')) %>%
+  mutate(
+    'Published Category' = case_when(
+      .$'Published Category' == "1" ~ "1. Data not made available",
+      .$'Published Category' == "2" ~ "2. Data available on request to authors",
+      .$'Published Category' == "5" ~ "5. Data available from central repository (access-controlled or open access), but insufficient detail available to find specific dataset",
+      .$'Published Category' == "7" ~ "7. Data available in the manuscript/supplementary files",
+      .$'Published Category' == "8" ~ "8. Data available via a online repository that is not access-controlled e.g. Dryad, Zenodo",
+      TRUE ~ "9"
+    )
+  )
+
 ft <- flextable(df4) %>%
+  merge_v(j=1:2) %>%
   bg(bg = "#A6A6A6", part = "header") %>%
   bold(part = "header") %>%
   bold(j = 1, part = "body") %>%
+  border(i = 1:6, j = 3:4, border.bottom = fp_border(color = "black")) %>%
+  border(i = 1:7, j = 2, border.right = fp_border(color = "black")) %>%
+  border(i = 3, j = 1:4, border.bottom = fp_border(color = "black", width = 2)) %>%
+  hline_bottom(part = "all",border = fp_border(width = 2))%>%
   align(align = "center", part = "all" ) %>%
+  align(align = "left", part = "body", j=3 ) %>%
   fontsize(size = 10, part = "all") %>%
   set_table_properties( layout = "autofit") %>%
+  fix_border_issues(part = "all") %>%
   align(j = 1, align = "left", part = "all")
 
 (ft_s3 <- ft)
@@ -615,11 +639,21 @@ pub_plot <- ggplot(df_pub_plot, aes(x = published_decision, y = freq, fill = fac
   theme(plot.title = element_text(size = 10),panel.grid.major.x = element_blank(),panel.grid.minor.x = element_blank()) +
   NULL
 
-plot_s1 <- pre_plot + pub_plot + plot_layout(guides = 'collect') + 
-  plot_annotation(tag_levels = 'I')
+plot_s1 <- pre_plot + pub_plot + plot_layout(guides = 'collect') +
+  plot_annotation(tag_levels = 'A') &
+  theme(
+    legend.position = 'bottom',
+    legend.background = element_rect(
+      size = 0.5,
+      linetype = "solid",
+      colour =
+        "black"
+    )
+  ) & labs(fill = "Group:")
 
-ggplot2::ggsave(here("report","Figure1.jpeg"),
+ggplot2::ggsave(here("report","Fig1.tiff"),
                 plot_s1,
-                dpi = 500)
+                dpi = 400, units = "in",
+                width = 5.1, height = 4)
 
 

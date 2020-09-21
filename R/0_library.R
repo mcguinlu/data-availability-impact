@@ -11,6 +11,7 @@ if (!require("flextable")) install.packages("flextable") # not installed on this
 if (!require("ggplot2")) install.packages("ggplot2") # not installed on this machine
 if (!require("patchwork")) install.packages("patchwork") # not installed on this machine
 if (!require("RColorBrewer")) install.packages("RColorBrewer") # not installed on this machine
+if (!require("officer")) install.packages("officer")
 
 # LIBRARY CALLS -----------------------------------------------------------
 library(medrxivr) # Access MedRxiv Preprint Data
@@ -22,6 +23,7 @@ library(here) # A Simpler Way to Find Your Files
 library(flextable) # Functions for Tabular Reporting
 library(ggplot2) # Create Elegant Data Visualisations Using the Grammar of Graphics
 library(patchwork) # The Composer of Plots
+library(officer)
 library(RColorBrewer) # ColorBrewer Palettes
 
 # GENERATE PACKAGE CITATIONS ----------------------------------------------
