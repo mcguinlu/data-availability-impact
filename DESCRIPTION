@@ -1,0 +1,46 @@
+Type: Compendium
+Package: data-avail-impact
+Title: Compare MedRxiv-preprinted and Published Data Availability Statements
+Version: 0.0.1
+Authors@R: 
+    person(given = "Luke",
+           family = "McGuinness",
+           role = c("aut", "cre"),
+           email = "luke.mcguinness@bristol.ac.uk",
+           comment = c(ORCID = "0000-0001-8730-9761"))
+Description: This repository contains the data and code to support an 
+    examination of the data/code availability statements associated with 
+    preprints on medRxiv and an analysis of whether these statements are
+    affected by journal editorial policies.
+License: MIT + file LICENSE
+Depends: 
+    bookdown,
+    devtools,
+    dplyr,
+    epitools,
+    flextable,
+    ftExtra,
+    ggplot2,
+    grateful,
+    here,
+    irr,
+    kableExtra,
+    knitr,
+    MASS,
+    medrxivr,
+    officer,
+    patchwork,
+    RColorBrewer,
+    rcrossref,
+    rio,
+    rmarkdown,
+    rvest,
+    stringr,
+    tibble
+VignetteBuilder: 
+    knitr
+Remotes: 
+    haozhu233/kableExtra,
+    Pakillo/grateful
+Encoding: UTF-8
+LazyData: true
