@@ -5,8 +5,8 @@
 
 <!-- badges: start -->
 
-[![Launch Rstudio
-Binder](http://mybinder.org/badge_logo.svg)](https://mybinder.org/v2/gh/mcguinlu/data-availability-impact/master?urlpath=rstudio)
+<!--[![Launch Rstudio Binder](http://mybinder.org/badge_logo.svg)](https://mybinder.org/v2/gh/mcguinlu/data-availability-impact/master?urlpath=rstudio) -->
+
 <!-- badges: end -->
 
 This repository contains the data and code to support an examination of
