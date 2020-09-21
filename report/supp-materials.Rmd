@@ -5,6 +5,7 @@ bibliography:
   - references2.bib
   - references_packages.bib
 csl: ama.csl
+pandoc_args: [       "-F", "./pandoc-word-pagebreak"     ]
 output:
   bookdown::word_document2:
       toc: true
@@ -29,7 +30,7 @@ knitr::opts_chunk$set(echo=FALSE, warning = FALSE, message = FALSE)
 
 ```
 
-#####
+\newpage
 
 # Supplementary Tables
 
@@ -39,7 +40,7 @@ knitr::opts_chunk$set(echo=FALSE, warning = FALSE, message = FALSE)
 ft_s1_supp2
 ```
 
-#####
+\newpage
 
 ## ST 2: Change in data availability statement openness by journal
 
@@ -47,7 +48,7 @@ ft_s1_supp2
 ft_s1_supp
 ```
 
-#####
+\newpage
 
 # Supplementary Materials
 
