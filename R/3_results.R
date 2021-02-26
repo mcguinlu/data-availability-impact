@@ -180,42 +180,64 @@ df_s1 <- merge(df, df_reference, all.x = TRUE) %>%
             change_open = sum(change>0),
             change_closed = sum(change<0),
             change_none = sum(change==0)) %>%
-  mutate(policy_code = ifelse(policy_code == 1, "Requires open data", "Does not require open data")) %>%
+  mutate(policy_code = ifelse(policy_code == 1, "Mandates open data", "Does not mandate open data")) %>%
   dplyr::select(-c(pub_open, pub_closed, preprint_open, preprint_closed))
 
 colnames(df_s1) <-
-  c("Policy category",
-    "Number of journals\n (N)",
-    "Number of records\n (N)",
-    "Open at preprint\n % (N)",
-    "Open at publication\n % (N)",
+  c("Journal data\n sharing policy",
+    "number_journals",
+    "Preprinted records subsequently published\n (N)",
+    "Open DAS in\n preprinted version\n % (N)",
+    "Open DAS in\n published version\n % (N)",
     "More open\n (N)",
     "More closed\n (N)",
     "No change\n (N)"
   )
 
-ft <- flextable(df_s1) %>%
-      add_header("Policy category"="Policy category",
-                 "Number of journals\n (N)" = "Number of journals\n (N)",
-                 "Number of records\n (N)" = "Number of records\n (N)",
-                 "Open at preprint\n % (N)" = "Open at preprint\n % (N)",
-                 "Open at publication\n % (N)" = "Open at publication\n % (N)",
-                 "More open\n (N)" = "Change from preprint to publication",
-                 "More closed\n (N)"= "Change from preprint to publication",
-                 "No change\n (N)"= "Change from preprint to publication"
-                 ) %>%
-      merge_v(part = "header") %>%
-      merge_h(part = "header") %>%
-      border(part = "header", border.top = officer::fp_border(color = "black", width = 1),border.bottom = officer::fp_border(color = "black", width = 1)) %>%
-      border(part = "header", j = 1:4, border.right = officer::fp_border(color = "#A6A6A6", width = 1)) %>%
-      bg( bg = "#A6A6A6", part = "header") %>%
-      bold( part = "header") %>%
-      bold( j = 1, part = "body") %>%
-      align( align = "center", part = "all" ) %>%
-      bg( i = ~ seq(from = 1, to = nrow(df_s1)) %% 2 == 0, bg = "#DDDDDD", part = "body") %>%
-      fontsize( size = 8, part = "all") %>%
-      set_table_properties( layout = "autofit") %>%
-      align( j = 1, align = "left", part = "all")
+ft <- df_s1 %>%
+  dplyr::select(-number_journals) %>%
+  flextable() %>%
+  add_header(
+    "Journal data\n sharing policy" = "Journal data\n sharing policy",
+    "Preprinted records subsequently published\n (N)" = "Preprinted records subsequently published\n (N)",
+    "Open DAS in\n preprinted version\n % (N)" = "Open DAS in\n preprinted version\n % (N)",
+    "Open DAS in\n published version\n % (N)" = "Open DAS in\n published version\n % (N)",
+    "More open\n (N)" = "Change in DAS from preprint to publication",
+    "More closed\n (N)" = "Change in DAS from preprint to publication",
+    "No change\n (N)" = "Change in DAS from preprint to publication"
+  ) %>%
+  merge_v(part = "header") %>%
+  merge_h(part = "header") %>%
+  border(
+    part = "header",
+    border.top = officer::fp_border(color = "black", width = 1),
+    border.bottom = officer::fp_border(color = "black", width = 1)
+  ) %>%
+  border(
+    part = "header",
+    j = 1:4,
+    border.right = officer::fp_border(color = "#A6A6A6", width = 1)
+  ) %>%
+  bg(bg = "#A6A6A6", part = "header") %>%
+  bold(part = "header") %>%
+  bold(j = 1, part = "body") %>%
+  align(align = "center", part = "all") %>%
+  bg(i = ~ seq(from = 1, to = nrow(df_s1)) %% 2 == 0,
+     bg = "#DDDDDD",
+     part = "body") %>%
+  add_footer_lines("DAS: Data availability statement") %>%
+  fontsize(size = 8, part = "all") %>%
+  set_table_properties(layout = "autofit") %>%
+  align(j = 1, align = "left", part = "all") %>%
+  border(
+    part = "all",
+    border.right = officer::fp_border(
+      color = "black",
+      style = "dotted",
+      width = 0.25
+    ),
+    j = c(1, 2, 4)
+  )
 
 (ft_s1 <- ft)
 
@@ -237,7 +259,7 @@ n_more_closed <- as.character(df_s1[1,7])
 # First supplemental table for S1
 df_s1_supp1 <- merge(df, df_reference, all.x = TRUE) %>%
   merge(df_policy, by = "journal") %>%
-  mutate(policy_code = ifelse(policy_code == 1, "Requires open data","Does not require open data")) %>%
+  mutate(policy_code = ifelse(policy_code == 1, "Mandates open data","Does not mandate open data")) %>%
   group_by(journal) %>%
   summarise(number = n(),
             pub_open = sum(published_decision_group==1),
@@ -305,8 +327,7 @@ ft <- flextable(df_s1_supp1) %>%
     j = c(1, 2, 3, 5)
   ) %>%
   set_table_properties(layout = "autofit") %>%
-  align(j = 1:2, align = "left", part = "all") %>%
-  set_caption("")
+  align(j = 1:2, align = "left", part = "all")
 
 
 (ft_s1_supp <- ft)
@@ -338,7 +359,7 @@ df_s1_supp2 <- merge(df, df_reference, all.x = TRUE) %>%
   left_join(df_categories) %>%
   dplyr::rename_all( ~ gsub("-", "_", .x, fixed = TRUE)) %>%
   mutate(
-    policy_code = ifelse(policy_code == 1, "Requires open data", "Does not require open data"),
+    policy_code = ifelse(policy_code == 1, "Mandates open data", "Does not mandate open data"),
     Sub_category = paste0("(", preprint_decision, ") ", Sub_category)
   ) %>%
   dplyr::select(
@@ -420,8 +441,7 @@ ft <- flextable(df_s1_supp2) %>%
   width(j=1,width = 1) %>%
   fontsize(size = 8, part = "all") %>%
   set_table_properties(layout = "autofit") %>%
-  align(j = 1:2, align = "left", part = "body") %>%
-  set_caption("")
+  align(j = 1:2, align = "left", part = "body")
 
 (ft_s1_supp2 <- ft)
 
@@ -434,20 +454,20 @@ df_s2 <- rio::import(here("data",
                           "reviewer 2",
                           "s2_blind_reviewer2.xlsx")) %>%
   dplyr::select(code_DAS_decision, code_PDF_decision) %>%
-  mutate(code_DAS_decision = ifelse(code_DAS_decision==1,"Code mentioned", "No code mentioned"),
-         code_PDF_decision = ifelse(code_PDF_decision==1,"Code mentioned", "No code mentioned"))
+  mutate(code_DAS_decision = ifelse(code_DAS_decision==1,"Code availability described", "Code availability not described"),
+         code_PDF_decision = ifelse(code_PDF_decision==1,"Code availability described", "Code availability not described"))
 
 
 df_s2 <- table(df_s2$code_DAS_decision, df_s2$code_PDF_decision) %>%
   as.data.frame.matrix() %>%
   tibble::rownames_to_column() %>%
   mutate("DAS Category" = "Data availability statement") %>%
-  dplyr::select("DAS Category", rowname, "Code mentioned", "No code mentioned")
+  dplyr::select("DAS Category", rowname, "Code availability described", "Code availability not described")
 
 
-code_pdf_total <- df_s2$`Code mentioned`[1] + df_s2$`Code mentioned`[2]
+code_pdf_total <- df_s2$`Code availability described`[1] + df_s2$`Code availability described`[2]
 
-code_captured <- df_s2$`Code mentioned`[1] %>% 
+code_captured <- df_s2$`Code availability described`[1] %>% 
   paste0(" (", round(./code_pdf_total*100,1),"%)")
 
 colnames(df_s2)[1]<- " "  
@@ -458,8 +478,8 @@ ft_s2 <- flextable::flextable(df_s2) %>%
   add_header(
     " " = "",
     "_" = "",
-    "Code mentioned" = "Full text",
-    "No code mentioned" = "Full text",
+    "Code availability described" = "Full text",
+    "Code availability not described" = "Full text",
   ) %>%
   merge_h(part = "header") %>%
   flextable::border_remove() %>%
@@ -533,8 +553,8 @@ df4 <- merge(df, df_reference, all.x = TRUE) %>%
   mutate(pre_total = n())  %>%
   group_by(preprint_decision, published_decision) %>%
   mutate(pub_total = n()) %>%
-  mutate(Group = case_when(preprint_decision == 3 ~ "Available in future (link)",
-                           preprint_decision == 4 ~ "Available in future (no link)")) %>%
+  mutate(Group = case_when(preprint_decision == 3 ~ "Data available in the future, with a link to an embargoed repository provided",
+                           preprint_decision == 4 ~ "Data available in the future, with no details of embargoed repository given")) %>%
   dplyr::select(Group, published_decision, pub_total, pre_total) %>%
   distinct() %>%
   arrange(Group, published_decision) %>%
@@ -567,12 +587,47 @@ ft <- flextable(df4) %>%
   hline_bottom(part = "all",border = fp_border(width = 2))%>%
   align(align = "center", part = "all" ) %>%
   align(align = "left", part = "body", j=3 ) %>%
-  fontsize(size = 10, part = "all") %>%
+  fontsize(size = 8, part = "all") %>%
   set_table_properties( layout = "autofit") %>%
   fix_border_issues(part = "all") %>%
   align(j = 1, align = "left", part = "all")
 
 (ft_s3 <- ft)
+
+
+# S4: What happened to those papers published in journals with an open policy 
+# but which did not share data? --------------
+
+df_s4 <- merge(df, df_reference, all.x = TRUE) %>%
+  merge(df_policy, by = "journal") %>%
+  filter(published_decision_group == 0 & policy_code == 1) %>%
+  group_by(published_decision) %>% 
+  summarise('Number of records' = n()) %>%
+  left_join(df_categories, by = c("published_decision" = "preprint_decision")) %>%
+  mutate("Key" = published_decision) %>%
+  dplyr::select("Key","Sub-category","Number of records")
+
+n_not_open <- sum(df_s4$`Number of records`)
+
+ft <- flextable(df_s4) %>%
+  border(
+    part = "header",
+    border.top = officer::fp_border(color = "black", width = 1),
+    border.bottom = officer::fp_border(color = "black", width = 1)
+  ) %>%
+  bg(bg = "#A6A6A6", part = "header") %>%
+  bold(part = "header") %>%
+  align(align = "center", part = "all") %>%
+  bg(i = ~ seq(from = 1, to = nrow(df_s4)) %% 2 == 0,
+     bg = "#DDDDDD",
+     part = "body") %>%
+  bold(part = "body", j=1) %>%
+  width(j = 1, width = 2) %>%
+  fontsize(size = 8, part = "all") %>%
+  set_table_properties(layout = "autofit") %>%
+  align(j = 1:2, align = "left", part = "body")
+
+(ft_s4 <- ft)
 
 # #  GET PERCENTAGE OF COVID PAPERS -----------------------------------------
 # 
@@ -600,13 +655,13 @@ df_pre_plot <- df_pre %>%
     )
   )
 
-pre_plot <- ggplot(df_pre_plot, aes(x = preprint_decision, y= freq, fill = factor(preprint_decision_group, levels = c("Closed", "Open", "Not applicable")))) +
+pre_plot <- ggplot(df_pre_plot, aes(x = preprint_decision, y= freq, fill = factor(preprint_decision_group, levels = c("Not applicable", "Closed", "Open")))) +
   geom_col() +
   theme_minimal() +
   labs(x = "Category",
        y = "Percentage of preprints",
        fill = "Group")  +
-  scale_fill_manual(values = c( "#FC8D62","#66C2A5", "#8DA0CB")) +
+  scale_fill_manual(values = c( "#8DA0CB", "#FC8D62","#66C2A5")) +
   scale_x_continuous(labels = as.character(df_pre_plot$preprint_decision), breaks = df_pre_plot$preprint_decision) +
   scale_y_continuous(labels = c("0%","10%","20%","30%"), limits = c(0,30)) +
   ggtitle(paste0("Preprint (N = ",n_records,")")) + 
@@ -626,13 +681,13 @@ df_pub_plot <- df_pub %>%
     )
   )
 
-pub_plot <- ggplot(df_pub_plot, aes(x = published_decision, y = freq, fill = factor(published_decision_group, levels = c("Closed", "Open", "Not applicable")))) +
+pub_plot <- ggplot(df_pub_plot, aes(x = published_decision, y = freq, fill = factor(published_decision_group, levels = c("Not applicable","Closed", "Open")))) +
   geom_col() +
   theme_minimal() +
   labs(x = "Category",
        y = "Percentage of published articles",
        fill = "Group") +
-  scale_fill_manual(values = c( "#FC8D62","#66C2A5", "#8DA0CB")) +
+  scale_fill_manual(values = c("#8DA0CB", "#FC8D62","#66C2A5")) +
   scale_x_continuous(labels = as.character(df_pub_plot$published_decision), breaks = df_pub_plot$published_decision) +
   scale_y_continuous(labels = c("0%","10%","20%","30%"), limits = c(0,30)) + 
   ggtitle(paste0("Published (N = ",n_pub_denominator,")")) + 
