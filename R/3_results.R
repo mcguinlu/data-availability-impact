@@ -63,9 +63,6 @@ n_pub_no_format <- df_reference %>%
   filter(is.na(published)==FALSE) %>%
   nrow()
 
-n_pub <- n_pub_no_format %>%
-  paste0(" (", round(./n_records*100,1),"%)")
-
 n_pub_das <- df_reference %>%
   merge(df_pub, all.x = TRUE) %>%
   filter(is.na(published_DAS)==FALSE & published_DAS != "XXXX - Abstract") %>%
@@ -80,6 +77,9 @@ n_excluded_pre <- df_pre %>%
 n_total_pre <- df_pre %>%
   filter(preprint_decision != 0) %>%
   nrow()
+
+n_pub <- n_pub_no_format %>%
+  paste0(" (", round(./n_total_pre*100,1),"%)")
 
 n_available_pre <- df_pre %>%
   filter(preprint_decision != 0 & preprint_decision %in% c(7,8)) %>%
@@ -467,7 +467,7 @@ df_s2 <- table(df_s2$code_DAS_decision, df_s2$code_PDF_decision) %>%
 
 code_pdf_total <- df_s2$`Code availability described`[1] + df_s2$`Code availability described`[2]
 
-code_captured <- df_s2$`Code availability described`[1] %>% 
+code_captured <- df_s2$`Code availability described`[2] %>% 
   paste0(" (", round(./code_pdf_total*100,1),"%)")
 
 colnames(df_s2)[1]<- " "  
@@ -521,31 +521,11 @@ ft_s2 <- flextable::flextable(df_s2) %>%
 n_future <- df_pre %>%
   filter(preprint_decision %in% c(3,4)) %>%
   nrow() %>%
-  paste0(" (", round(./n_records*100,1),"%)")
+  paste0(" (", round(./n_total_pre*100,1),"%)")
 
 n_future_pub <- df_both %>%
   filter(preprint_decision %in% c(3,4) & is.na(published_DAS) == FALSE & published_DAS != "XXXX - Abstract") %>%
   nrow()
-
-n_future_pub_open <- df_both %>%
-  filter(preprint_decision %in% c(3,4) & is.na(published_DAS) == FALSE & published_DAS != "XXXX - Abstract" ) %>%
-  nrow()
-
-n_onpub_link <- df_pre %>%
-  filter(preprint_decision %in% c(3)) %>%
-  nrow() %>%
-  paste0(" (", round(./n_records*100,1),"%)")
-
-n_onpub_nolink <- df_pre %>%
-  filter(preprint_decision %in% c(4)) %>%
-  nrow() %>%
-  paste0(" (", round(./n_records*100,1),"%)")
-
-n_future <- df_pre %>%
-  filter(preprint_decision %in% c(3,4)) %>%
-  nrow() %>%
-  paste0(" (", round(./n_records*100,1),"%)")
-
 
 df4 <- merge(df, df_reference, all.x = TRUE) %>%
   filter(preprint_decision %in% c(3,4)) %>%
