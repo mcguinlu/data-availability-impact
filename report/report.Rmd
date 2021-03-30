@@ -11,6 +11,7 @@ output:
       toc: false
       toc_depth: 3
       reference_docx: word-styles-reference-01.docx
+      number_sections: false
 ---
 
 ``` {r, echo = FALSE, warning=FALSE, message=FALSE }
@@ -28,7 +29,6 @@ source(here("R","3_results.R"))
 
 knitr::opts_knit$set(eval.after = "tab.cap")
 knitr::opts_chunk$set(echo=FALSE, warning = FALSE, message = FALSE)
-
 ```
 
 # Front Matter
@@ -63,7 +63,7 @@ Reproducibility; Data sharing; Data availability statements; Journalology; Prepr
 # Abstract
 
 __Objective__   
-To determine whether medRxiv data availability statements describe open or closed data - that is, whether the data used in the study is openly available without restriction - and to examine if this changes on publication based on journal data sharing policy. Additionally, to examine whether data availability statements are sufficient to capture code availability declarations.
+To determine whether medRxiv data availability statements describe open or closed data - that is, whether the data used in the study is openly available without restriction - and to examine if this changes on publication based on journal data-sharing policy. Additionally, to examine whether data availability statements are sufficient to capture code availability declarations.
 
 __Design__  
 Observational study, following a pre-registered protocol, of preprints posted on the medRxiv repository between 25th June 2019 and 1st May 2020 and their published counterparts.
@@ -103,15 +103,15 @@ A protocol for this analysis was registered in advance and followed at all stage
 
 The data availability statements of preprints posted on the medRxiv preprint repository between 25th June 2019 (the date of first publication of a preprint on medRxiv) and 1st May 2020 were extracted using the `medrxivr` and `rvest` R packages.[@mcguinness2020b; @rvest] Completing a data availability statement is required as part of the medRxiv submission process, and so a statement was available for all eligible preprints. Information on the journal in which preprints were subsequently published was extracted using the published DOI provided by medRxiv and  `rcrossref`.[@rcrossref] Several other R packages were used for data cleaning and analysis. [@base; @devtools; @dplyr; @flextable; @ggplot2; @grateful; @here; @irr; @officer; @patchwork; @RColorBrewer; @rio; @stringr; @tibble]
 
-The data availability statements for published articles were extracted manually into an Excel file, and are available for inspection (see Material availability section).
+To extract the data availability statements for published articles and the journals data-sharing policies, we browsed to the article or publication website and manually copied the relevant material (where available) into an Excel file. The extracted data are available for inspection (see Material availability section). 
 
-## Categorization of data availability statements
+## Categorization
 
-A pre-specified classification system was developed to categorize each data availability statement as describing either open or closed data, with additional ordered sub-categories indicating the degree of openness (see Table \@ref(tab:categorylabels)). The system was based on the "Findability" and "Accessibility" elements of the FAIR framework,[@wilkinson2016] the categories used by previous effort to categorize published data availability statements,[@colavizza2020; @federer2018], our own experience of medRxiv data availability statements, and discussion with colleagues.
+A pre-specified classification system was developed to categorize each data availability statement as describing either open or closed data, with additional ordered sub-categories indicating the degree of openness (see Table \@ref(tab:categorylabels)). The system was based on the "Findability" and "Accessibility" elements of the FAIR framework,[@wilkinson2016] the categories used by previous effort to categorize published data availability statements,[@colavizza2020; @federer2018], our own experience of medRxiv data availability statements, and discussion with colleagues. Illustrative examples of each category were taken from preprints included in our sample.[@ehrlich2019; @septiandri2019; @solis2019; @ebbeling2019; @barry2020; @malpas2019; @knuppel2019; @thompson2019; @moriarty2019a]
 
 &nbsp;
 
-``` {r categorylabels, ft.align="center", tab.cap = "Categories used to classify the data availability statements. Illustrative examples of each category were taken from preprints included in our sample (see \"Data Extraction\").[@@ehrlich2019; @septiandri2019; @solis2019; @ebbeling2019; @barry2020; @malpas2019; @knuppel2019; @thompson2019; @moriarty2019a]"}
+``` {r categorylabels, ft.align="center", tab.cap = "Categories used to classify the data availability statements. Illustrative examples of each category were taken from preprints included in our sample (see \"Data Extraction\")."}
 
 tab <- rio::import(here("report","table-data","categories.xlsx")) %>%
     replace(is.na(.), "")
@@ -145,6 +145,8 @@ ft
 The data availability statement for each preprinted record were categorized by two independent researchers, using the groups presented in Table \@ref(tab:categorylabels), while the statements for published articles were categorized using all groups barring Category 3 and 4 ("Available in the future"). Records for which the data availability statement was categorized as "Not applicable" (Category 1 from Table \@ref(tab:categorylabels)) at either the preprint or published stage were excluded from further analyses. Researchers were provided only with the data availability statement, and as a result, were blind to the associated preprint metadata (e.g. title, authors, corresponding author institution) in case this could affect their assessments. Any disagreements were resolved through discussion. 
 
 Due to our large sample, if authors claimed that all data were available in the manuscript or as a supplemental file, or that their study did not make use of any data, we took them at their word. Where a data availability statement met multiple categories or contained multiple data sources with varying levels of openness, we took a conservative approach and categorized it on the basis of the most restrictive aspect (see Supplementary Materials 1 for some illustrative examples). We plotted the distribution of preprint and published data availability statements across the nine categories presented in Table \@ref(tab:categorylabels). 
+
+Similarly, the extracted data-sharing policies were classified by two independent reviewers according to whether the journal mandated data sharing (1) or not (0). Where the journal had no obvious data sharing policy, these were classified as not mandating data sharing.
 
 ## Changes between preprinted and published statements
 
@@ -235,18 +237,18 @@ However, our analysis is subject to a number of potential limitations. The prima
 
 ## Implications for policy
 
-Based on our analysis, there is a greater change towards describing open data between preprinted and published data availability statements in journals that mandate data sharing as a condition of publication. This would suggest that data sharing could be immediately improved by journals becoming more stringent in their data availability policies. Similarly, introduction of a related code availability section (or composite "material" availability section) will aid in reproducibility by capturing whether analytic code is available in a standardized manuscript section.
+Data availability statements are an important tool in the fight to make studies more reproducible. However, without critical review of these statements in line with strict data-sharing policies, authors default to not sharing their data or making it "available on request". Based on our analysis, there is a greater change towards describing open data between preprinted and published data availability statements in journals that mandate data sharing as a condition of publication. This would suggest that data sharing could be immediately improved by journals becoming more stringent in their data availability policies. Similarly, introduction of a related code availability section (or composite "material" availability section) will aid in reproducibility by capturing whether analytic code is available in a standardized manuscript section.
 
 It would be unfair to expect all editors and reviewers to be able to effectively review the code and data provided with a submission. As proposed elsewhere,[@sanchez-tojar] a possible solution is to assign an editor or reviewer whose sole responsibility in the review process is to examine the data and code provided. They would also responsible for judging, when data and code are absent, whether the argument presented by the authors for not sharing these materials is valid.
+
+However, while this study focuses primarily on the role of journals, some responsibility for enacting change rests with the research community at large. If researchers regularly shared our data, strict journal data-sharing policies would not be needed. As such, we would encourage authors to consider sharing the data underlying future publications, regardless of whether the journal actually mandates it. 
 
 &nbsp;
 
 ## Conclusion
 
-Data availability statements are an important tool in the fight to make studies more reproducible. However, without critical review of these statements in line with strict data-sharing policies, authors default to not sharing their data or making it "available on request". As such, we would strongly encourage all journals to  reassess whether their data sharing policies are sufficiently stringent and consistently enforced. 
+Requiring that authors submit a data availability statement is a good first step, but is insufficient to ensure data availability, as our work shows that authors most commonly use them to state that data is only available on request. However, strict editorial policies that mandate data sharing (where appropriate) as a condition of publication appear to be effective in making research data available. In addition to introduction of a dedicated code availability statement, a move towards mandated data sharing will help to ensure that future research is readily reproducible. We would strongly encourage all journal editors to examine whether their data availability policies are sufficiently stringent and consistently enforced.
 
-However, while this study focuses primarily on the role of journals, some responsibility for enacting change rests with the research community at large. If researchers regularly shared our data, strict journal data sharing policies would not be needed. As such, we would encourage authors to consider sharing the data underlying future publications, regardless of whether the journal actually mandates it. 
- 
 \newpage
 
 # Highlights
