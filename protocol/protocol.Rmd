@@ -1,15 +1,15 @@
 ---
 title: ""
 bibliography: 
-  - references.bib
-  - references2.bib
-  - references_packages.bib
-csl: ama.csl
+  - bibliography/references.bib
+  - bibliography/references2.bib
+  - bibliography/references_packages.bib
+csl: bibliography/ama.csl
 output:
   bookdown::word_document2:
       toc: false
       toc_depth: 3
-      reference_docx: word-styles-reference-01.docx
+      reference_docx: templates/word-styles-reference-01.docx
 ---
 
 ``` {r, echo = FALSE, warning=FALSE, message=FALSE }

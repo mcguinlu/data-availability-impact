@@ -1,16 +1,16 @@
 ---
 title: ""
 bibliography: 
-  - references.bib
-  - references2.bib
-  - references_packages.bib
-csl: bmj.csl
+  - bibliography/references.bib
+  - bibliography/references2.bib
+  - bibliography/references_packages.bib
+csl: bibliography/bmj.csl
 pandoc_args: [       "-F", "./pandoc-word-pagebreak"     ]
 output:
   bookdown::word_document2:
       toc: false
       toc_depth: 3
-      reference_docx: word-styles-reference-01.docx
+      reference_docx: templates/word-styles-reference-01.docx
       number_sections: false
 ---
 
@@ -150,7 +150,7 @@ Similarly, the extracted data-sharing policies were classified by two independen
 
 ## Changes between preprinted and published statements
 
-To assess if data availability statements change between preprint and published articles, we examined whether a discrepancy existed between the categories assigned to the preprinted and published statements, and the direction of the discrepancy ("more closed" or "more open"). Records were deemed to become "more open" if their data availability statement was categorised as "closed" at the preprint stage and "open" at the published stage. Conversely, records described as "more closed" were those moving from "open" at preprint to "closed" on publication.
+To assess if data availability statements change between preprint and published articles, we examined whether a discrepancy existed between the categories assigned to the preprinted and published statements, and the direction of the discrepancy ("more closed" or "more open"). Records were deemed to become "more open" if their data availability statement was categorized as "closed" at the preprint stage and "open" at the published stage. Conversely, records described as "more closed" were those moving from "open" at preprint to "closed" on publication.
 
 We declare a minor deviation from our protocol for this analysis.[@mcguinness2020] Rather than investigating the data-sharing policy only for journals with the largest change in openness as intended, which involved setting an arbitrary cut-off when defining "largest change", we systematically extracted and categorized the data-sharing policies for all journals in which preprints had subsequently been published using two categories (1: "requiring/mandating data sharing" and, 2: "not requiring/mandating data sharing"), and compared the change in openness between these two categories. Note that Category 2 includes journals that encourage data sharing, but do not make it a condition of publication.
 
@@ -231,7 +231,7 @@ Finally, we also provide evidence that data availability statements alone are in
 
 A particular strength of this analysis is that the design allows us to compare what is essentially the same paper (same design, findings and authorship team) under two different data-sharing polices, and assess the change in the openness of the statement between them. To our knowledge this is the first study to use this approach to examine the potential impact of journal editorial policies. This approach also allows us to address the issue of self-selection. When looking at published articles alone, it is not possible to tell whether authors always intended to make their data available and chose a given journal due to its reputation for data sharing. In addition, we have examined all available preprints within our study period and all corresponding published articles, rather than taking a sub-sample. Finally, categorization of the statements was carried out by two independent researchers using predefined categories, reducing the risk of misclassification.
 
-However, our analysis is subject to a number of potential limitations. The primary one is that manuscripts (at both the preprint and published stages) may have included links to the data, or more information that uniquely identifies the dataset from a data portal, within the text (for example, in the Methods section). While this might be the case, if readers are expected to piece together the relevant information from different locations in the manuscript, it throws into question what having a dedicated data availability statement adds. A second limitation is that we do not assess the veracity of any data availability statements, which may introduce some misclassification bias into our categorization. For example, we do not check whether all relevant data can actually be found in the manuscript/supplementary files (Category 7) or the linked repository (Category 8), meaning our results provide a conservative estimate of the scale of the issue. Previous work has suggested that this is unlikely to be the case.[@roche2015] A further consideration is that for Categories 1 ("No data available") and 2 ("Available on request"), there will be situations where making research data available is not feasible, for example, due to cost or concerns about patient re-identifiability.[@goodhill2014; @courbier2019] This is situation is perfectly reasonable, as long as statements are explicit in justifying the lack of open data.
+However, our analysis is subject to a number of potential limitations. The primary one is that manuscripts (at both the preprint and published stages) may have included links to the data, or more information that uniquely identifies the dataset from a data portal, within the text (for example, in the Methods section). While this might be the case, if readers are expected to piece together the relevant information from different locations in the manuscript, it throws into question what having a dedicated data availability statement adds. A second limitation is that we do not assess the veracity of any data availability statements, which may introduce some misclassification bias into our categorization. For example, we do not check whether all relevant data can actually be found in the manuscript/supplementary files (Category 7) or the linked repository (Category 8), meaning our results provide a conservative estimate of the scale of the issue. Previous work has suggested that this is unlikely to be the case.[@roche2015] A further consideration is that for Categories 1 ("No data available") and 2 ("Available on request"), there will be situations where making research data available is not feasible, for example, due to cost or concerns about patient re-identifiability.[@goodhill2014; @courbier2019] This situation is perfectly reasonable, as long as statements are explicit in justifying the lack of open data.
 
 &nbsp;
 
@@ -247,7 +247,7 @@ However, while this study focuses primarily on the role of journals, some respon
 
 ## Conclusion
 
-Requiring that authors submit a data availability statement is a good first step, but is insufficient to ensure data availability, as our work shows that authors most commonly use them to state that data is only available on request. However, strict editorial policies that mandate data sharing (where appropriate) as a condition of publication appear to be effective in making research data available. In addition to introduction of a dedicated code availability statement, a move towards mandated data sharing will help to ensure that future research is readily reproducible. We would strongly encourage all journal editors to examine whether their data availability policies are sufficiently stringent and consistently enforced.
+Requiring that authors submit a data availability statement is a good first step, but is insufficient to ensure data availability, as our work shows that authors most commonly use them to state that data is only available on request. However, strict editorial policies that mandate data sharing (where appropriate) as a condition of publication appear to be effective in making research data available. In addition to the introduction of a dedicated code availability statement, a move towards mandated data sharing will help to ensure that future research is readily reproducible. We would strongly encourage all journal editors to examine whether their data availability policies are sufficiently stringent and consistently enforced.
 
 \newpage
 
